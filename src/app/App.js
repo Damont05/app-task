@@ -24,43 +24,46 @@ class App extends Component{
     
     //Crear Tareas
     addTask(e) {
-        e.preventDefault();
+        
         if(this.state._id) {
-          fetch(`/api/task/${this.state._id}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-              title: this.state.title,
-              description: this.state.description
-            }),
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
-          })
-            .then(res => res.json())
-            .then(data => {
-              window.M.toast({html: 'TAREA ACTUALIZADA'});
-              this.setState({_id: '', title: '', description: ''});
-              this.fetchTasks();
-            });
-        } else {
-          fetch('/api/task', {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
-          })
-            .then(res => res.json())
-            .then(data => {
-              console.log(data);
-              window.M.toast({html: 'TAREA GUARDADA'});
-              this.setState({title: '', description: ''});
-              this.fetchTasks();
+            fetch(`/api/task/${this.state._id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    title: this.state.title,
+                    description: this.state.description
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
             })
-            .catch(err => console.error(err));
+                .then(res => res.json())
+                .then(data => {
+                    M.toast({html: 'TAREA ACTUALIZADA'});
+                    this.setState({_id: '', title: '', description: ''});
+                    this.fetchTasks();
+                });
+
+            } else {
+                fetch('/api/task', {
+                    method: 'POST',
+                    body: JSON.stringify(this.state),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        M.toast({html: 'TAREA GUARDADA'});
+                        this.setState({title: '', description: ''});
+                        this.fetchTasks();
+                    })
+                    .catch(err => console.error(err));
         }
+
+        e.preventDefault();
     
     }
 
