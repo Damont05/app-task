@@ -1,8 +1,16 @@
 {
     "name": "taskapp",
     "version": "1.0.0",
-    "description": "",
+    "description": "#Instalar los paquetes necesarios para el proyecto",
     "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon src/index.js",
+        "webpack": "webpack --node development --watch"
+    },
+    "author": "Luis-Montero",
+    "license": "ISC",
     "dependencies": {
         "babel-core": "^6.26.3",
         "babel-loader": "^8.1.0",
@@ -22,13 +30,5 @@
         "nodemon": "^2.0.4",
         "webpack": "^4.44.1",
         "webpack-cli": "^3.3.12"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node src/index.js",
-        "dev": "nodemon src/index.js",
-        "webpack": "webpack --node development --watch"
-    },
-    "author": "Luis-Montero",
-    "license": "ISC"
+    }
 }
